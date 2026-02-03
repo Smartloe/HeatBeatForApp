@@ -3,6 +3,7 @@
 ## 基本信息
 - Base URL: https://music-dl.sayqz.com
 - Version: 1.0.0
+- 更新日期: 2026-02-03
 - 时区：统计类 API 使用 UTC+8（北京时间）
 
 ## 支持平台（source）
