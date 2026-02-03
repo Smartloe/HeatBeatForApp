@@ -1,7 +1,9 @@
 package com.tunehub.app.ui.screens
 
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import com.tunehub.app.ui.components.PlaybackHistoryList
 
 @Composable
 fun HomeScreen() {
@@ -15,7 +17,10 @@ fun SearchScreen() {
 
 @Composable
 fun PlayerScreen() {
-    Text(text = "Player")
+    Column {
+        Text(text = "Player")
+        PlaybackHistoryList(items = emptyList())
+    }
 }
 
 @Composable
