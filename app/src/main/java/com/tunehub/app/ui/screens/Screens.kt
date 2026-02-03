@@ -37,6 +37,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.tunehub.app.lyrics.LrcParser
+import com.tunehub.app.ui.components.LyricsView
 import com.tunehub.app.ui.components.PlaybackHistoryList
 import kotlinx.coroutines.delay
 
@@ -176,6 +178,18 @@ fun SearchScreen() {
 fun PlayerScreen() {
     var progress by remember { mutableStateOf(0.35f) }
     val artScale by animateFloatAsState(targetValue = 1f, label = "artScale")
+    val demoLyrics = remember {
+        LrcParser.parse(
+            """
+            [00:00.00]夜航
+            [00:05.50]城市的风轻轻经过
+            [00:10.20]灯火像星河在流动
+            [00:15.60]听见自己心跳
+            [00:20.90]慢慢沉入夜色
+            """.trimIndent(),
+        )
+    }
+    val activeIndex = remember { LrcParser.findActiveIndex(demoLyrics, 10000L) }
 
     Column(
         modifier = Modifier
@@ -201,6 +215,10 @@ fun PlayerScreen() {
         Text(text = "播放历史", fontWeight = FontWeight.SemiBold)
         Spacer(modifier = Modifier.height(8.dp))
         PlaybackHistoryList(items = emptyList())
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(text = "歌词", fontWeight = FontWeight.SemiBold)
+        Spacer(modifier = Modifier.height(8.dp))
+        LyricsView(lines = demoLyrics, activeIndex = activeIndex, onSeek = { })
     }
 }
 
