@@ -27,4 +27,6 @@ object NetworkClient {
         .build()
 
     val api: TuneHubApiService = retrofit.create(TuneHubApiService::class.java)
+
+    fun <T> create(service: Class<T>): T = retrofit.create(service)
 }
